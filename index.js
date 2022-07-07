@@ -354,7 +354,7 @@ bot.on('/viewCart', msg => {
 
     let replyMarkup = bot.inlineKeyboard([
         [ btn('Add more products 📥', { callback: '/addMore'}), btn('Delete products 📥', { callback: '/deleteProducts'}) ],
-        [ btn('Facturar 🧾', { callback: '/facturar'}), btn('Back to menu 🔄', { callback: '/menu' }) ]
+        [ btn('Checkout 🧾', { callback: '/facturar'}), btn('Back to menu 🔄', { callback: '/menu' }) ]
     ]);
 
     let id = msg.from.id;
