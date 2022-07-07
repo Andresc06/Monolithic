@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "link-module-alias": "^1.2.0",
+    "mongodb": "^4.7.0",
+    "nodemailer": "^6.7.6",
+    "telebot": "^1.4.1",
+    "yup": "^0.32.11"
+  },
+  "name": "monolithic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "postinstall": "link-module-alias",
+    "preinstall": "command -v link-module-alias && link-module-alias clean || true"
+  },
+  "engines": {
+    "node": ">=0.10.3 <15"
+  },
+  "_moduleAliases": {
+    "@instance": "config/instance.js",
+    "db": "config/database.js",
+    "f" : "functions-bot/",
+    "utils" : "utils/utils.js"
+  },
+  "keywords": [],
+  "author": "andresc06",
+  "license": "ISC",
+  "description": "This repo contains the bot functions."
+}
