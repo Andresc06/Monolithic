@@ -1,4 +1,5 @@
 const TeleBot = require('telebot');
+require('dotenv').config();
 //Instancia de axios
 const { API_DB, ENDPOINTS_CARTS } = require('@instance');
 
@@ -70,7 +71,7 @@ bot.on('/showProducts', msg => {
     //Define los botones a mostrar al final de la lista
     let replyMarkup = bot.inlineKeyboard([
         [btn('Next Page 🔜', { callback: '/updatepage' })],
-        [btn('Search for a product 🔎', { callback: '/searchProduct' })],
+        [btn('Search for a product 🔎', { callback: '/searchProduct' }), btn('Filter Products', { callback: '/filterProduct' })],
         [btn('Add products to your cart 📥', { callback: '/cart' })],
         [btn('Go Back to menu 🔄', { callback: '/menu' })]
         
@@ -113,7 +114,7 @@ bot.on('/updatepage', msg => {
     
     //Define los botones a mostrar al final de la lista
     let replyMarkup = bot.inlineKeyboard([
-        [btn('Search for a product 🔎', { callback: '/searchProduct' })],
+        [btn('Search for a product 🔎', { callback: '/searchProduct' }), btn('Filter Products', { callback: '/filterProduct' })],
         [btn('Add products to cart 📥', { callback: '/cart' })],
         [btn('Go Back to menu 🔄', { callback: '/menu' })]
     ]);
