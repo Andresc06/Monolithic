@@ -10,6 +10,7 @@ const createCart = require('f/createCart');
 const addToCart = require('f/addToCart');
 const viewCart = require('f/viewCart');
 const validateDetails = require('f/validateDetails');
+const getInfoProductsByCategory = require('f/getInfoProductsByCategory');
 const sendMail = require('f/sendMail');
 const deleteProducts = require('f/deleteProducts');
 const total = require('f/total');
@@ -119,6 +120,140 @@ bot.on('/updatepage', msg => {
 
 
     bot.sendMessage(id, `<b>LIST OF PRODUCTS 🛍:</b>\n\n${result.part2}`, { parseMode: 'html', replyMarkup, once: true  });
+
+});
+
+//filtrar los productos por categorías
+
+bot.on ('/filterProduct',function (msg){
+    
+    //Define los botones a mostrar al final de la lista
+    let replyMarkup = bot.inlineKeyboard([
+        [btn('Electronics 💻', { callback: '/electronicsProduct' }), btn('Jewelry 💎', { callback: '/jeweleryProduct' })],
+        [btn('Women Clothing 👗', { callback: '/womenProducts' }), btn('Men Clothing 👔', { callback: '/menProduct' })],
+        [btn('Back to menu 🔄', { callback: '/menu' })]
+    ]);
+
+    let id = msg.from.id;
+
+    //Muestra el mensaje al usuario junto a los botones definidos
+    return bot.sendMessage(id, `<b>Filter products by their category 🛍️</b>\n\nSelect one of the following options:`, { parseMode: 'html', replyMarkup });
+
+});
+
+//PRODUCTOS CATEGORÍA ELECTRÓNICA
+
+bot.on('/electronicsProduct', function (msg) {
+
+    let replyMarkup = bot.inlineKeyboard([
+        [btn('Search for a product 🔎', { callback: '/searchProduct' })],
+        [btn('Add products to cart 📥', { callback: '/cart' })],
+        [btn('Go Back to menu 🔄', { callback: '/menu' })]
+    ]);
+
+    let id = msg.from.id;
+
+
+    async function electronicsProducts() {
+
+        try {
+            let category = 'electronics'
+            let message = await getInfoProductsByCategory(category);
+
+            return bot.sendMessage(id, `<b>ELECTRONICS CATEGORY:💻</b>\n\n${message}`, { parseMode: 'html', replyMarkup });
+
+        } catch (error) {
+            log(error);
+        }
+
+    } electronicsProducts();
+
+});
+
+//PRODUCTOS CATEGORÍA JOYERÍA
+
+bot.on('/jeweleryProduct', function (msg) {
+
+    let replyMarkup = bot.inlineKeyboard([
+        [btn('Search for a product 🔎', { callback: '/searchProduct' })],
+        [btn('Add products to cart 📥', { callback: '/cart' })],
+        [btn('Go Back to menu 🔄', { callback: '/menu' })]
+    ]);
+
+    let id = msg.from.id;
+
+
+    async function jeweleryProducts() {
+
+        try {
+            let category = 'jewelery'
+            let message = await getInfoProductsByCategory(category);
+
+            return bot.sendMessage(id, `<b>JEWELRY CATEGORY 💎</b>\n\n${message}`, { parseMode: 'html', replyMarkup });
+
+        } catch (error) {
+            log(error);
+        }
+
+    } jeweleryProducts();
+
+});
+
+//PRODUCTOS CATEGORÍA ropa para damas
+
+bot.on('/womenProducts', function (msg) {
+
+    let replyMarkup = bot.inlineKeyboard([
+        [btn('Search for a product 🔎', { callback: '/searchProduct' })],
+        [btn('Add products to cart 📥', { callback: '/cart' })],
+        [btn('Go Back to menu 🔄', { callback: '/menu' })]
+    ]);
+
+    let id = msg.from.id;
+
+
+    async function womanProducts() {
+
+        try {
+            let category = "women's clothing"
+            let message = await getInfoProductsByCategory(category);
+
+            return bot.sendMessage(id, `<b>WOMEN CATEGORY 👗</b>\n\n${message}`, { parseMode: 'html', replyMarkup });
+
+        } catch (error) {
+            log(error);
+        }
+
+    } womanProducts();
+
+});
+
+//PRODUCTOS CATEGORÍA ropa para caballeros
+
+bot.on('/menProduct', function (msg) {
+
+    let replyMarkup = bot.inlineKeyboard([
+        [btn('Search for a product 🔎', { callback: '/searchProduct' })],
+        [btn('Add products to cart 📥', { callback: '/cart' })],
+        [btn('Go Back to menu 🔄', { callback: '/menu' })]
+    ]);
+
+    let id = msg.from.id;
+
+
+    async function menProducts() {
+
+        try {
+            let category = "men's clothing"
+            let message = await getInfoProductsByCategory(category);
+
+            return bot.sendMessage(id, `<b>MEN CATEGORY 👔</b>\n\n${message}`, { parseMode: 'html', replyMarkup });
+
+        } catch (error) {
+            log(error);
+        }
+
+    } menProducts();
 
 });
 
