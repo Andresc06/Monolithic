@@ -569,7 +569,7 @@ bot.on('ask.userDetails', function (msg) {
                         title: 'Payment 💳',
                         description: 'Mastercard/VISA card',
                         payload: 'telebot-test-invoice',
-                        providerToken: '284685063:TEST:YjZmZjViYjJmYzk0',
+                        providerToken: '284685063:TEST:YjNhNDhjODViZGFl',
                         startParameter: 'pay',
                         currency: 'USD',
                         prices: [ { label: 'Total amount', amount: total_amount } ],
