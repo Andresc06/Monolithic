@@ -27,15 +27,6 @@ function actualizarDirectorio(result_f) {
     result = result_f;
 }
 
-bot.on('text', msg => {
-
-    id = msg.from.id;
-    msg_id = msg.message_id;
-    if(msg.text != "/start") {
-        bot.deleteMessage(id,msg_id);
-    }
-});
-
 //MOSTRAR MENU PRINCIPAL
 
 bot.on('/start', msg => {
@@ -419,8 +410,9 @@ bot.on('ask.userDetails', function (msg) {
             try {
 
                 // Se actualizan los datos del usuario
-                await API_DB.put(ENDPOINTS_CARTS.PUT_USER_DETAILS+`?userId=${ id }`, details);
                 bot.sendMessage(id, `<i>Getting your information...</i>`, { parseMode: 'html' });
+                await API_DB.put(ENDPOINTS_CARTS.PUT_USER_DETAILS+`?userId=${ id }`, details);
+                
 
 
                 // Se hace un condicional si utiliza el metodo de tarjeta                
