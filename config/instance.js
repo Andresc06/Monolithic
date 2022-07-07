@@ -8,6 +8,7 @@ const API_DB = axios.create({
 
 const ENDPOINTS_PRODUCTS = {
     GET_PRODUCTS: '/getProducts',
+    GET_PRODUCTS_CATEGORY: '/getProductsByCategory'
 }
 
 const ENDPOINTS_CARTS = {
