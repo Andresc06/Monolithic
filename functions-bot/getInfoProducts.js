@@ -1,5 +1,5 @@
 const { API_DB, ENDPOINTS_PRODUCTS } = require('@instance');
-const { log } = require('@utils');
+const { log } = require('utils');
 
 async function getInfoProducts() {
 
